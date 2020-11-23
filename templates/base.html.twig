@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <link rel="stylesheet" href="/build/css/app.css">
+    <link rel="icon" href="{{ asset('build/fav.ico') }}" />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-secondary bg-primary">
+        <a class="navbar-brand" href="/">
+            <img class="logo" src="{{ asset('build/logocroped.jpg') }}" alt="logo"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active text-secondary" href="/">Home <span class="sr-only">(current)</span></a>
+            </div>
+        </div>
+    </nav>
+</header>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+<script src="/build/app.js"></script>
+</body>
 </html>
