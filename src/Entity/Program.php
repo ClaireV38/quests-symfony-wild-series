@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\ProgramRepository;
+use git App\Repository\ProgramRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +31,12 @@ class Program
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $poster;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -69,6 +75,18 @@ class Program
     public function setPoster(?string $poster): self
     {
         $this->poster = $poster;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
