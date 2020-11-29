@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use git App\Repository\ProgramRepository;
+use App\Repository\ProgramRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
