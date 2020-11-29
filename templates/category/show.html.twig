@@ -3,7 +3,7 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
-    <h1>les 3 dernières serires de la categorie {{ program.category.name }} : </h1>
+    <h1>les 3 dernières serires de la categorie {{ programs[0].category.name }} : </h1>
     {% for program in programs %}
         <div>
             <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
