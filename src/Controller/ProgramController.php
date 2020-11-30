@@ -52,4 +52,36 @@ class ProgramController extends AbstractController
             'programSeasons' => $programSeasons
         ]);
     }
+
+    /**
+     * Show season details and list of episodes
+     *
+     * @Route("/{programId}/season/{seasonId}", requirements={"ProgramId"="\d+", "SeasonId"="\d+"}, methods={"GET"}, name="season_show")
+     * @return Response
+     */
+    public function showSeason(int $programId, int $seasonId): Response
+    {
+        $program = $this->getDoctrine()
+            ->getRepository(Program::class)
+            ->findOneBy(['id' => $programId]);
+        if (!$program) {
+            throw $this->createNotFoundException(
+                'No program with id : '.$programId.' found in program\'s table.'
+            );
+        }
+        $season = $this->getDoctrine()
+            ->getRepository(Season::class)
+            ->findOneBy(['id' => $seasonId]);
+        if (!$season) {
+            throw $this->createNotFoundException(
+                'No program with id : '.$seasonId.' found in program\'s table.'
+            );
+        }
+        $seasonEpisodes = $season->getEpisodes();
+        return $this->render('program/season_show.html.twig', [
+            'program' => $program,
+            'season' => $season,
+            'episodes' => $seasonEpisodes
+        ]);
+    }
 }

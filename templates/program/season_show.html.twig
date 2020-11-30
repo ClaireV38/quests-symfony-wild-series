@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All programs{% endblock %}
+
+{% block body %}
+    <div class="media">
+        <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+        <div class="media-body">
+            <h1 class="mt-0">saison {{ season.number }} de {{ program.title }}</h1>
+            <p>{{ season.description }}</p>
+            <p>Episodes disponibles :
+            <ul>
+                {% for episode in episodes %}
+                    <li>
+                        episode {{ episode.number }} : {{ episode.title }}
+                    </li>
+                {% else %}
+                    Aucun episode trouvé
+                {% endfor %}
+            </ul>
+            </p>
+        </div>
+    </div>
+{% endblock %}
