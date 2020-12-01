@@ -36,11 +36,8 @@ class ProgramController extends AbstractController
      * @Route("/{id}", requirements={"id"="\d+"}, methods={"GET"}, name="show")
      * @return Response
      */
-    public function show($id): Response
+    public function show(Program $program): Response
     {
-        $program = $this->getDoctrine()
-            ->getRepository(Program::class)
-            ->findOneBy(['id' => $id]);
         if (!$program) {
             throw $this->createNotFoundException(
                 'No program with id : '.$id.' found in program\'s table.'
