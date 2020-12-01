@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All programs{% endblock %}
+{% block title %} season {{ season.number }} {{ program.title }} {% endblock %}
 
 {% block body %}
     <div class="media">
@@ -12,7 +12,7 @@
             <ul>
                 {% for episode in episodes %}
                     <li>
-                        episode {{ episode.number }} : {{ episode.title }}
+                        <a href="{{ path("program_episode_show", { programId: program.id, seasonId: season.id, episodeId: episode.id }) }}">episode {{ episode.number }}</a> : {{ episode.title }}
                     </li>
                 {% else %}
                     Aucun episode trouvé

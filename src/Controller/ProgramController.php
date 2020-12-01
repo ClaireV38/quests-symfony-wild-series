@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Entity\Episode;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/programs", name="program_")
@@ -53,10 +55,10 @@ class ProgramController extends AbstractController
     /**
      * Show season details and list of episodes
      *
-     * @Route("/{program}/season/{season}", requirements={"program"="\d+", "season"="\d+"}, methods={"GET"}, name="season_show")
+     * @Route("/{program}/seasons/{season}", requirements={"program"="\d+", "season"="\d+"}, methods={"GET"}, name="season_show")
      * @return Response
      */
-    public function showSeason(Program $program,Season $season): Response
+    public function showSeason(Program $program, Season $season): Response
     {
         if (!$program) {
             throw $this->createNotFoundException(
@@ -73,6 +75,39 @@ class ProgramController extends AbstractController
             'program' => $program,
             'season' => $season,
             'episodes' => $seasonEpisodes
+        ]);
+    }
+
+    /**
+     * Show episode details
+     *
+     * @Route("/{programId}/seasons/{seasonId}/episodes/{episodeId}", requirements={"programId"="\d+", "seasonId"="\d+", "episodeId"="\d+"}, methods={"GET"}, name="episode_show")
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"programId": "id"}})
+     * @ParamConverter("season", class="App\Entity\Season", options={"mapping": {"seasonId": "id"}})
+     * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episodeId": "id"}})
+     * @return Response
+     */
+    public function showEpisode(Program $program, Season $season, Episode $episode): Response
+    {
+        if (!$program) {
+            throw $this->createNotFoundException(
+                'No program with id : '.$program->getId().' found in program\'s table.'
+            );
+        }
+        if (!$season) {
+            throw $this->createNotFoundException(
+                'No program with id : '.$season->getId().' found in program\'s table.'
+            );
+        }
+        if (!$episode) {
+            throw $this->createNotFoundException(
+                'No program with id : '.$episode->getId().' found in program\'s table.'
+            );
+        }
+        return $this->render('program/episode_show.html.twig', [
+            'program' => $program,
+            'season' => $season,
+            'episode' => $episode
         ]);
     }
 }
