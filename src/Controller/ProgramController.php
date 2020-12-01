@@ -53,25 +53,19 @@ class ProgramController extends AbstractController
     /**
      * Show season details and list of episodes
      *
-     * @Route("/{programId}/season/{seasonId}", requirements={"ProgramId"="\d+", "SeasonId"="\d+"}, methods={"GET"}, name="season_show")
+     * @Route("/{program}/season/{season}", requirements={"program"="\d+", "season"="\d+"}, methods={"GET"}, name="season_show")
      * @return Response
      */
-    public function showSeason(int $programId, int $seasonId): Response
+    public function showSeason(Program $program,Season $season): Response
     {
-        $program = $this->getDoctrine()
-            ->getRepository(Program::class)
-            ->findOneBy(['id' => $programId]);
         if (!$program) {
             throw $this->createNotFoundException(
-                'No program with id : '.$programId.' found in program\'s table.'
+                'No program with id : '.$program->getId().' found in program\'s table.'
             );
         }
-        $season = $this->getDoctrine()
-            ->getRepository(Season::class)
-            ->findOneBy(['id' => $seasonId]);
         if (!$season) {
             throw $this->createNotFoundException(
-                'No program with id : '.$seasonId.' found in program\'s table.'
+                'No program with id : '.$season->getId().' found in program\'s table.'
             );
         }
         $seasonEpisodes = $season->getEpisodes();
