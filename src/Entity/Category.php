@@ -31,7 +31,7 @@ class Category
 
     public function __construct()
     {
-        $this->programs = newArrayCollection();
+        $this->programs = new ArrayCollection();
     }
 
     public function getId(): ?int
