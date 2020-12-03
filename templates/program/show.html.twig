@@ -9,6 +9,8 @@
             <h1 class="mt-0">{{ program.title }}</h1>
             <p>{{ program.synopsis }}</p>
             <p>Catégorie : {{ program.category.name }}</p>
+            <p>Année de diffusion : {{ program.year }}</p>
+            <p>Pays : {{ program.country }}</p>
             <p>Saisons disponibles :
                 <ul>
                 {% for season in programSeasons %}
