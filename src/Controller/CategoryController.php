@@ -66,7 +66,7 @@ class CategoryController extends AbstractController
     /**
      *Show up to 3 series from one category
      *
-     * @Route("/{categoryName}", requirements={"category"="\w+"}, methods={"GET"}, name="show")
+     * @Route("/{categoryName}", requirements={"categoryName"="\w+"}, methods={"GET"}, name="show")
      * @param string $categoryName
      * @return Response
      */

@@ -57,7 +57,7 @@ class ProgramController extends AbstractController
             // Flush the persisted object
             $entityManager->flush();
             // Finally redirect to categories list
-            return $this->redirectToRoute('program_index');
+            return $this->redirectToRoute('category_show', ['categoryName' => $program->getCategory()->getName()]);
         }
         // Render the form
         return $this->render('program/new.html.twig', [
