@@ -1,0 +1,15 @@
+{# templates/program/new.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.title, { 'label': 'titre' }) }}
+    {{ form_row(form.poster, { 'label': 'lien vers image poster' }) }}
+    {{ form_row(form.category, { 'label': 'choisir le catégorie' }) }}
+    {{ form_row(form.country, { 'label': 'choisir le pays' }) }}
+    {{ form_row(form.year, {'label': 'année de diffusion' }) }}
+    {{ form_row(form.synopsis, { 'label': 'synopsis' } ) }}
+    <input type='submit' value='ajouter la série'>
+    {{ form_end(form) }}
+{% endblock %}
