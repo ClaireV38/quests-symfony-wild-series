@@ -132,4 +132,9 @@ class Season
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getProgram()->getTitle() . " saison " . $this->getNumber();
+    }
 }
