@@ -1,7 +1,7 @@
 # quests-symfony-wild-series
 
-quete 14 link to quest14 demo:
-https://www.loom.com/share/4d6073b9ad1e4d6bb1cca3e1ec34f01e
+quete 15 link to quest15 demo:
+https://www.loom.com/share/827bf69990a14c25accf3c6df1d86b0d
 
 
 a series of quests to start a project with symfony
@@ -13,3 +13,5 @@ it provides the possibility to :
 - display user favorite series
 - handling user account
 the app is multilingual
+
+

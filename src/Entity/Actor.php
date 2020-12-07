@@ -63,6 +63,7 @@ class Actor
     {
         if (!$this->programs->contains($program)) {
             $this->programs[] = $program;
+            $program->addActor($this);
         }
 
         return $this;
@@ -71,7 +72,7 @@ class Actor
     public function removeProgram(Program $program): self
     {
         $this->programs->removeElement($program);
-
+        $program->removeActor($this);
         return $this;
     }
 }
