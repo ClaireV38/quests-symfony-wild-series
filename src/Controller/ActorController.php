@@ -4,9 +4,9 @@
 namespace App\Controller;
 
 
-use http\Env\Response;
 use App\Entity\Actor;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ActorController

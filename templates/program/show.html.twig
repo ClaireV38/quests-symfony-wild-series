@@ -11,7 +11,7 @@
             <p>Catégorie : {{ program.category.name }}</p>
             <p>Année de diffusion : {{ program.year }}</p>
             <p>Pays : {{ program.country }}</p>
-            <p>Saisons disponibles :
+            <p><strong>Saisons disponibles :</strong>
                 <ul>
                 {% for season in programSeasons %}
                     <li>
@@ -23,6 +23,14 @@
                 {% endfor %}
                 </ul>
             </p>
+            <strong>Acteurs :</strong>
+            <ul>
+                {% for actor in program.actors %}
+                    <li><a href="{{ path("actor_show", { id: actor.id }) }}"> {{ actor.name }}</a> </li>
+                {% else %}
+                    <li>Aucun acteur pour cette série</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 
