@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Actor;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
