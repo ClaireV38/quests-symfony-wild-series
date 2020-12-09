@@ -3,7 +3,7 @@
 
 namespace App\DataFixtures;
 
-use  Faker;
+use Faker;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Actor;
 use Doctrine\Persistence\ObjectManager;
