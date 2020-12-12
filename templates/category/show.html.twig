@@ -3,7 +3,9 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
+    {% if programs %}
     <h1>les 3 dernières serires de la categorie {{ programs[0].category.name }} : </h1>
+    {% endif %}
     {% for program in programs %}
         <div>
             <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>

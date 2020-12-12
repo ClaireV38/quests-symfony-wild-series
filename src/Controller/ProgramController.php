@@ -74,7 +74,7 @@ class ProgramController extends AbstractController
      * Getting a program by id
      *
      * @Route("/{program}", requirements={"program"="[\w\-]+"}, methods={"GET"}, name="show")
-     *  @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
      * @return Response
      */
     public function show(Program $program): Response
@@ -94,7 +94,8 @@ class ProgramController extends AbstractController
     /**
      * Show season details and list of episodes
      *
-     * @Route("/{program}/seasons/{season}", requirements={"program"="\d+", "season"="\d+"}, methods={"GET"}, name="season_show")
+     * @Route("/{program}/seasons/{season}", requirements={"program"="[\w\-]+", "season"="\d+"}, methods={"GET"}, name="season_show")
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
      * @return Response
      */
     public function showSeason(Program $program, Season $season): Response
@@ -120,27 +121,27 @@ class ProgramController extends AbstractController
     /**
      * Show episode details
      *
-     * @Route("/{programId}/seasons/{seasonId}/episodes/{episodeId}", requirements={"programId"="\d+", "seasonId"="\d+", "episodeId"="\d+"}, methods={"GET"}, name="episode_show")
-     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"programId": "id"}})
+     * @Route("/{program}/seasons/{seasonId}/episodes/{episode}", requirements={"programId"="\d+", "seasonId"="\d+", "episodeId"="\d+"}, methods={"GET"}, name="episode_show")
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
      * @ParamConverter("season", class="App\Entity\Season", options={"mapping": {"seasonId": "id"}})
-     * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episodeId": "id"}})
+     * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episode": "slug"}})
      * @return Response
      */
     public function showEpisode(Program $program, Season $season, Episode $episode): Response
     {
         if (!$program) {
             throw $this->createNotFoundException(
-                'No program with id : '.$program->getId().' found in program\'s table.'
+                'No program with title : '.$program->getSlug().' found in program\'s table.'
             );
         }
         if (!$season) {
             throw $this->createNotFoundException(
-                'No program with id : '.$season->getId().' found in program\'s table.'
+                'No program with title : '.$season->getSlug().' found in program\'s table.'
             );
         }
         if (!$episode) {
             throw $this->createNotFoundException(
-                'No program with id : '.$episode->getId().' found in program\'s table.'
+                'No program with title : '.$episode->getSlug().' found in program\'s table.'
             );
         }
         return $this->render('program/episode_show.html.twig', [
