@@ -2,6 +2,7 @@
 // src/Controller/ProgramController.php
 namespace App\Controller;
 
+use App\Service\Slugify;
 use App\Form\ProgramType;
 use App\Entity\Program;
 use App\Entity\Season;
@@ -41,7 +42,7 @@ class ProgramController extends AbstractController
      *
      * @Route("/new", name="new")
      */
-    public function new(Request $request) : Response
+    public function new(Request $request, Slugify $slugify) : Response
     {
         // Create a new Category Object
         $program = new Program();
@@ -54,6 +55,8 @@ class ProgramController extends AbstractController
             // Deal with the submitted data
             // Get the Entity Manager
             $entityManager = $this->getDoctrine()->getManager();
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
             // Persist Category Object
             $entityManager->persist($program);
             // Flush the persisted object
@@ -70,7 +73,8 @@ class ProgramController extends AbstractController
     /**
      * Getting a program by id
      *
-     * @Route("/{id}", requirements={"id"="\d+"}, methods={"GET"}, name="show")
+     * @Route("/{program}", requirements={"program"="[\w\-]+"}, methods={"GET"}, name="show")
+     *  @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
      * @return Response
      */
     public function show(Program $program): Response

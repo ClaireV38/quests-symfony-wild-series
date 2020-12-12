@@ -10,7 +10,7 @@
             <p>{{ program.synopsis }}</p>
             <p>{{ program.year }}</p>
             <p>{{ program.country }}</p>
-            <a href="{{ path("program_show", { id: program.id }) }}">Voir la fiche</a>
+            <a href="{{ path("program_show", { program: program.slug }) }}">Voir la fiche</a>
         </div>
     {% else %}
         Aucune série trouvée.
