@@ -9,11 +9,13 @@ use App\Entity\Season;
 use App\Entity\Episode;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Mime\Email;
 
 /**
  * @Route("/programs", name="program_")
@@ -42,7 +44,7 @@ class ProgramController extends AbstractController
      *
      * @Route("/new", name="new")
      */
-    public function new(Request $request, Slugify $slugify) : Response
+    public function new(Request $request, Slugify $slugify,  MailerInterface $mailer) : Response
     {
         // Create a new Category Object
         $program = new Program();
@@ -62,6 +64,13 @@ class ProgramController extends AbstractController
             // Flush the persisted object
             $entityManager->flush();
             // Finally redirect to categories list
+            $email = (new Email())
+                ->from($this->getParameter('mailer_from'))
+                ->to('your_email@example.com')
+                ->subject('Une nouvelle série vient d\'être publiée !')
+                ->html('<p>Une nouvelle série vient d\'être publiée sur Wild Séries !</p>');
+
+            $mailer->send($email);
             return $this->redirectToRoute('category_show', ['categoryName' => $program->getCategory()->getName()]);
         }
         // Render the form
