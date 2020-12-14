@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>New program</title>
+    {{ encore_entry_link_tags('app') }}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Sriracha', cursive;
+        }
+        h1 {
+            text-align: center;
+        }
+        a {
+            margin: auto;
+            color: #1482B1;
+            text-align: center;
+        }
+        p {
+            text-align: justify;
+        }
+    </style>
+    {% block stylesheets %} {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>
+</html>

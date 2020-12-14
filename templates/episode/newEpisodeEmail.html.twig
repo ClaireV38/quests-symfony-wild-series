@@ -1,0 +1,6 @@
+{% extends "layoutEmail.html.twig" %}
+{% block body %}
+<h1 class="email_title">Nouvel épisode {{ episode.number }} : {{ episode.title }} est sorti</h1>
+<p>Hello, ceci est un message pour vous prévenir qu'un nouvel épisode de la série {{ episode.season.program.title }} est disponible sur vos écrans.</p>
+<p><a href="http://127.0.0.1:8000/episodes/{{ episode.slug }}">plus de détails sur l'épisode</a>
+{% endblock %}
