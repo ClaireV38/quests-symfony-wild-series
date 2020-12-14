@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All programs{% endblock %}
+{% block title %}les programmes de la catégorie{% endblock %}
 
 {% block body %}
     {% if programs %}
-    <h1>les 3 dernières serires de la categorie {{ programs[0].category.name }} : </h1>
+    <h1>les 3 dernières series de la categorie {{ programs[0].category.name }} : </h1>
     {% endif %}
     {% for program in programs %}
         <div>
