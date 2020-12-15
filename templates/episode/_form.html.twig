@@ -1,4 +1,11 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<ul class="comments">
+    {% for comment in form.comments %}
+
+        <li>{{ form_row(comment.comment) }}</li>
+    {% endfor %}
+</ul>
+<button class="btn">{{ button_label|default('Save') }}</button>
+
 {{ form_end(form) }}

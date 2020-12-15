@@ -75,7 +75,7 @@ class EpisodeController extends AbstractController
      * @Route("/{episode}/edit", requirements={"episode"="[\w\-]+"}, name="episode_edit", methods={"GET","POST"})
      * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episode": "slug"}})
      */
-    public function edit(Request $request, Episode $episode, Slugify $slugify): Response
+    public function edit(Request $request, Episode $episode, Slugify $slugify, Comment $comment): Response
     {
         $form = $this->createForm(EpisodeType::class, $episode);
         $form->handleRequest($request);

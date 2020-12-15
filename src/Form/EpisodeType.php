@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Form\CommentType;
 use App\Entity\Episode;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class EpisodeType extends AbstractType
@@ -17,7 +19,10 @@ class EpisodeType extends AbstractType
             ->add('number')
             ->add('synopsis')
             ->add('season')
-        ;
+            ->add('comments', CollectionType::class, [
+                'entry_type' => CommentType::class,
+                'entry_options' => ['label' => false],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

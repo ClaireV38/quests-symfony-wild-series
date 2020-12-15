@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Comment;
+use App\Entity\Episode;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,8 +16,6 @@ class CommentType extends AbstractType
         $builder
             ->add('comment')
             ->add('rate')
-            ->add('author')
-            ->add('episode')
         ;
     }
 
