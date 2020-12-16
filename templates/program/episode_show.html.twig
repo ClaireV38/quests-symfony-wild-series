@@ -12,5 +12,20 @@
                 <p>{{ episode.synopsis }}</p>
             </div>
         </div>
+        {% for comment in episode.comments|reverse %}
+            <div class="card">
+                <h3>commentaire :</h3> <p> {{ comment.comment }} </p>
+            <h3>note : {{ comment.rate }}</h3>
+            <h3>auteur : {{ comment.author.name }}</h3>
+            </div>
+        {% endfor %}
+        {% if app.user %}
+            <br>
+            <h4>Ajouter un commentaire</h4>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        {% endif %}
     </div>
 {% endblock %}

@@ -23,6 +23,8 @@ class UserFixtures extends Fixture
         $contributor = new User();
         $contributor->setEmail('contributor@monsite.com');
         $contributor->setRoles(['ROLE_CONTRIBUTOR']);
+        $contributor->setName('contributor');
+        $contributor->setBio('toute ma vie j\'ai contribué contribué et fait des commentaires');
         $contributor->setPassword($this->passwordEncoder->encodePassword(
             $contributor,
             'contributorpassword'
