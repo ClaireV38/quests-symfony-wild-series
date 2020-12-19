@@ -102,6 +102,29 @@ class ProgramController extends AbstractController
     }
 
     /**
+     * @Route("/{program}/edit", name="program_edit", methods={"GET","POST"})
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
+     * @return Response
+     */
+    public function edit(Request $request, Program $program): Response
+    {
+        $form = $this->createForm(ProgramType::class, $program);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('program_index');
+        }
+
+        return $this->render('program/edit.html.twig', [
+            'program' => $program,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
      * Show season details and list of episodes
      *
      * @Route("/{program}/seasons/{season}", requirements={"program"="[\w\-]+", "season"="\d+"}, methods={"GET"}, name="season_show")
