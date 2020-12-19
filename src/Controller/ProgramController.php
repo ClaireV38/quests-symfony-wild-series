@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/programs", name="program_")
@@ -62,6 +63,8 @@ class ProgramController extends AbstractController
             $slug = $slugify->generate($program->getTitle());
             $program->setSlug($slug);
             // Persist Category Object
+            // Set the program's owner
+            $program->setOwner($this->getUser());
             $entityManager->persist($program);
             // Flush the persisted object
             $entityManager->flush();
@@ -106,12 +109,21 @@ class ProgramController extends AbstractController
      * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
      * @return Response
      */
-    public function edit(Request $request, Program $program): Response
+    public function edit(Request $request, Program $program, Slugify $slugify): Response
     {
+        /* Check wether the logged in user is the owner of the program */
+        if (!($this->getUser() == $program->getOwner())) {
+            /* If not the owner, throws a 403 Access Denied exception */
+            throw new AccessDeniedException('Only the owner can edit the program!');
+        }
+
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
+            $program->setOwner($this->getUser());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('program_index');
