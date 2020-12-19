@@ -105,7 +105,7 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{program}/edit", name="program_edit", methods={"GET","POST"})
+     * @Route("/{program}/edit", name="edit", methods={"GET","POST"})
      * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
      * @return Response
      */

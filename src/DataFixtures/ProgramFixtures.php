@@ -82,7 +82,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setYear($data['year']);
             $program->setCountry($data['country']);
             $program->setCategory($this->getReference('category_4'));
-            $program->setOwner($this->getReference('contributor'));
+            $program->setOwner($this->getReference('admin'));
             $manager->persist($program);
             $this->addReference('program_'.$i, $program);
             $i++;
