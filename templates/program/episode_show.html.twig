@@ -17,6 +17,7 @@
                 <h3>commentaire :</h3> <p> {{ comment.comment }} </p>
             <h3>note : {{ comment.rate }}</h3>
             <h3>auteur : {{ comment.author.name }}</h3>
+                <a href="{{ path("comment_edit", { id: comment.id }) }}">éditer</a>
             </div>
         {% endfor %}
         {% if app.user %}
