@@ -20,18 +20,32 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Création d’un utilisateur de type “contributeur” (= auteur)
-        $contributor = new User();
-        $contributor->setEmail('contributor@monsite.com');
-        $contributor->setRoles(['ROLE_CONTRIBUTOR']);
-        $contributor->setName('contributor');
-        $contributor->setBio('toute ma vie j\'ai contribué contribué et fait des commentaires');
-        $contributor->setPassword($this->passwordEncoder->encodePassword(
-            $contributor,
+        $contributor1 = new User();
+        $contributor1->setEmail('contributor1@monsite.com');
+        $contributor1->setRoles(['ROLE_CONTRIBUTOR']);
+        $contributor1->setName('contributor1');
+        $contributor1->setBio('toute ma vie j\'ai contribué contribué et fait des commentaires');
+        $contributor1->setPassword($this->passwordEncoder->encodePassword(
+            $contributor1,
             'contributorpassword'
         ));
 
-        $manager->persist($contributor);
-        $this->addReference('contributor', $contributor);
+        $manager->persist($contributor1);
+        $this->addReference('contributor1', $contributor1);
+
+        // Création d’un utilisateur de type “contributeur” (= auteur)
+        $contributor2 = new User();
+        $contributor2->setEmail('contributor2@monsite.com');
+        $contributor2->setRoles(['ROLE_CONTRIBUTOR']);
+        $contributor2->setName('contributor2');
+        $contributor2->setBio('toute ma vie j\'ai bcp contribué et fait des commentaires');
+        $contributor2->setPassword($this->passwordEncoder->encodePassword(
+            $contributor2,
+            'contributorpassword'
+        ));
+
+        $manager->persist($contributor2);
+        $this->addReference('contributor2', $contributor2);
 
         // Création d’un utilisateur de type “administrateur”
         $admin = new User();

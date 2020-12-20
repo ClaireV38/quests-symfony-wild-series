@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use App\Entity\Comment;
 use App\Form\CommentType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class CommentController extends AbstractController
 {
@@ -46,16 +47,21 @@ class CommentController extends AbstractController
 
 
     /**
-     * @Route("/comments/{id}", requirements={"program"="d+"}, name="comment_delete", methods={"DELETE"})
+     * @Route("/comments/{id}", requirements={"id"="\d+"}, name="comment_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Comment $comment): Response
     {
+        $episode = $comment->getEpisode();
         if ($this->isCsrfTokenValid('delete'.$comment->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($comment);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('episode_index');
+        return $this->redirectToRoute('program_episode_show', [
+            'program' => $episode->getSeason()->getProgram()->getSlug(),
+            'seasonId' => $episode->getSeason()->getId(),
+            'episode' => $episode->getSlug()
+        ]);
     }
 }

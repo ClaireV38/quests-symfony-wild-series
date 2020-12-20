@@ -39,7 +39,7 @@ security:
         ROLE_CONTRIBUTOR: ROLE_USER
         ROLE_ADMIN: ROLE_CONTRIBUTOR
     access_control:
-        - { path: ^/comments/[ a-z- ]+/edit, roles: ROLE_USER }
+        - { path: ^/comments/[0-9]+/edit, roles: ROLE_USER }
         - { path: ^/programs/new, roles: ROLE_CONTRIBUTOR }
         - { path: ^/programs/[ a-z- ]+/edit, roles: ROLE_CONTRIBUTOR }
         # - { path: ^/admin, roles: ROLE_ADMIN }
