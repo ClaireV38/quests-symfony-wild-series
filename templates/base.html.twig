@@ -30,7 +30,10 @@
                 <a class="nav-item nav-link active text-secondary" href="/categories/">Categories <span class="sr-only">(current)</span></a>
             </div>
             {% if app.user %}
-                {{ app.user.email }}
+                {{ app.user.name }}
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active text-secondary" href="{{ path('app_profile') }}"> Mon profil</a>
+            </div>
             <div class="navbar-nav">
                 <a class="nav-item nav-link active text-secondary" href="{{ path('app_logout') }}"> Se déconnecter</a>
             </div>
