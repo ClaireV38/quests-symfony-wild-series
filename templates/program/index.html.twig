@@ -3,18 +3,26 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
-    <h1>Toutes les séries de la table program : </h1>
-    {% for program in programs %}
-        <div class="program-box">
-            <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
-            <p>{{ program.synopsis }}</p>
-            <a href="{{ path("program_show", { program: program.slug }) }}">Voir la fiche</a>
-        </div>
-    {% else %}
-        Aucune série trouvée.
-    {% endfor %}
+    <div class="container">
+        <h1>Toutes les séries de la table program : </h1>
+        <h2>filtrer</h2>
+        {{ form_start(form) }}
+        {{ form_row(form.search,  { 'label': 'rechercher une série en particulier' }) }}
+        <button class="btn">{{ button_label|default('recherhcer') }}</button>
 
-    <a href="{{ path('app_index') }}">
-        Retour à l'accueil
-    </a>
+        {{ form_end(form) }}
+        {% for program in programs %}
+            <div class="program-box">
+                <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
+                <p>{{ program.synopsis }}</p>
+                <a href="{{ path("program_show", { program: program.slug }) }}">Voir la fiche</a>
+            </div>
+        {% else %}
+            Aucune série trouvée.
+        {% endfor %}
+
+        <a href="{{ path('app_index') }}">
+            Retour à l'accueil
+        </a>
+    </div>
 {% endblock %}
