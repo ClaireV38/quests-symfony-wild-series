@@ -39,8 +39,20 @@ class ProgramController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $search = $form->getData()['search'];
-            $programs = $programRepository->findBy(['title' => $search]);
+            $searchTitle = trim($form->getData()['searchTitle']);
+            $searchActor = trim($form->getData()['searchActor']);
+            if ($searchTitle === '' && $searchActor === '') {
+                $programs = [];
+            }
+            elseif ($searchActor === '') {
+                $programs = $programRepository->findLikeName($searchTitle);
+            }
+            elseif ($searchTitle === '') {
+                $programs = $programRepository->findWithActor($searchActor);
+            }
+            else {
+                $programs = $programRepository->findLikeName($searchTitle, $searchActor);
+            }
         } else {
             $programs = $programRepository->findAll();
         }

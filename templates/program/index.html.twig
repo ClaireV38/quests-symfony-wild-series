@@ -7,8 +7,9 @@
         <h1>Toutes les séries de la table program : </h1>
         <h2>filtrer</h2>
         {{ form_start(form) }}
-        {{ form_row(form.search,  { 'label': 'rechercher une série en particulier' }) }}
-        <button class="btn">{{ button_label|default('recherhcer') }}</button>
+        {{ form_row(form.searchTitle,  { 'label': 'rechercher un titre de série en particulier' }) }}
+        {{ form_row(form.searchActor,  { 'label': 'rechercher par nom de famille d\'un acteur de la série' }) }}
+        <button class="btn btn-primary">{{ button_label|default('rechercher') }}</button>
 
         {{ form_end(form) }}
         {% for program in programs %}

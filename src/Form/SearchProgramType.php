@@ -12,7 +12,8 @@ class SearchProgramType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('search', SearchType::class);
+            ->add('searchTitle', SearchType::class,  ['required'   => false])
+            ->add('searchActor', SearchType::class,  ['required'   => false]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
