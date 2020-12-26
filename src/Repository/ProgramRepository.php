@@ -23,7 +23,7 @@ class ProgramRepository extends ServiceEntityRepository
      * @param string $name
      * @return Collection|null
      */
-    public function findLikeName(string $title, string $actor = '^'): ?array
+    public function findLikeName(string $title, string $actor = ''): ?array
     {
         $queryBuilder = $this->createQueryBuilder('p')
             ->leftJoin('p.actors', 'a')
