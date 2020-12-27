@@ -28,18 +28,12 @@ class ActorFixtures extends Fixture  implements DependentFixtureInterface
             $actor = new Actor();
             $actor->setName($actorName);
             $actor->addProgram($this->getReference('program_0'));
+            $actor->addProgram($this->getReference('program_5'));
             $manager->persist($actor);
             $this->addReference('actor_' . $key, $actor);
         }
-        foreach (self::ACTORS as $key => $actorName) {
-            $actor = new Actor();
-            $actor->setName($actorName);
-            $actor->addProgram($this->getReference('program_5'));
-            $manager->persist($actor);
-            $this->addReference('actor_' . ($key + 7), $actor);
-        }
         $faker  =  Faker\Factory::create('fr_FR');
-        for ($i=14; $i<50 ; $i++) {
+        for ($i=7; $i<50 ; $i++) {
             $actor = new Actor();
             $actor->setName($faker->name);
             $actor->addProgram($this->getReference('program_'. ceil($i/10)));
