@@ -15,12 +15,11 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use App\Repository\ProgramRepository;
 use App\Form\SearchProgramType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @Route("/programs", name="program_")
@@ -33,7 +32,7 @@ class ProgramController extends AbstractController
      * @Route("/", name="index")
      * @return Response A response instance
      */
-    public function index(Request $request, ProgramRepository $programRepository): Response
+    public function index(Request $request, ProgramRepository $programRepository, SessionInterface $session): Response
     {
         $form = $this->createForm(SearchProgramType::class);
         $form->handleRequest($request);
@@ -55,6 +54,10 @@ class ProgramController extends AbstractController
             }
         } else {
             $programs = $programRepository->findAll();
+        }
+
+        if (!$session->has('total')) {
+            $session->set('total', 0); // if total doesn’t exist in session, it is initialized.
         }
 
         return $this->render('program/index.html.twig', [
