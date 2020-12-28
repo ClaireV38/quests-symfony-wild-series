@@ -45,6 +45,7 @@ class EpisodeController extends AbstractController
             $episode->setSlug($slug);
             $entityManager->persist($episode);
             $entityManager->flush();
+            $this->addFlash('success', 'L\'épisode a bien été créé');
             $email = (new Email())
                 ->from($this->getParameter('mailer_from'))
                 ->to('your_email@example.com')
@@ -84,7 +85,7 @@ class EpisodeController extends AbstractController
             $slug = $slugify->generate($episode->getTitle());
             $episode->setSlug($slug);
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'L\'épisode a bien été édité');
             return $this->redirectToRoute('episode_index');
         }
 
@@ -104,6 +105,7 @@ class EpisodeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($episode);
             $entityManager->flush();
+            $this->addFlash('danger', 'L\'épisode ' . $episode->getTitle() . ' a bien été supprimé');
         }
 
         return $this->redirectToRoute('episode_index');

@@ -3,22 +3,24 @@
 {% block title %}les programmes de la catégorie{% endblock %}
 
 {% block body %}
-    {% if programs %}
-    <h1>les 3 dernières series de la categorie {{ programs[0].category.name }} : </h1>
-    {% endif %}
-    {% for program in programs %}
-        <div>
-            <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
-            <p>{{ program.synopsis }}</p>
-            <p>{{ program.year }}</p>
-            <p>{{ program.country }}</p>
-            <a href="{{ path("program_show", { program: program.slug }) }}">Voir la fiche</a>
-        </div>
-    {% else %}
-        Aucune série trouvée.
-    {% endfor %}
+    <div class="container">
+        {% if programs %}
+            <h1>les 3 dernières series de la categorie {{ programs[0].category.name }} : </h1>
+        {% endif %}
+        {% for program in programs %}
+            <div>
+                <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
+                <p>{{ program.synopsis }}</p>
+                <p>{{ program.year }}</p>
+                <p>{{ program.country }}</p>
+                <a href="{{ path("program_show", { program: program.slug }) }}">Voir la fiche</a>
+            </div>
+        {% else %}
+            Aucune série trouvée.
+        {% endfor %}
 
-    <a href="{{ path('app_index') }}">
-        Retour à l'accueil
-    </a>
+        <a href="{{ path('app_index') }}">
+            Retour à l'accueil
+        </a>
+    </div>
 {% endblock %}

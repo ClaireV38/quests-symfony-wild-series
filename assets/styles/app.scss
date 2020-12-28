@@ -43,3 +43,15 @@ body {
 .search-form {
     margin: 50px 0;
 }
+
+.alert {
+    margin: 20px;
+}
+
+.alert-success {
+    background-color: rgba(124,252, 0, 0.3);
+}
+
+.alert-danger {
+    background-color: rgba(182, 7, 13, 0.3);
+}

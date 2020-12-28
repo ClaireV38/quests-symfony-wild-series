@@ -20,6 +20,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use App\Repository\ProgramRepository;
 use App\Form\SearchProgramType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/programs", name="program_")
@@ -93,6 +94,8 @@ class ProgramController extends AbstractController
             // Flush the persisted object
             $entityManager->flush();
             // Finally redirect to categories list
+            // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
+            $this->addFlash('success', 'Une nouvelle série a bien été créée');
             $email = (new Email())
                 ->from($this->getParameter('mailer_from'))
                 ->to('your_email@example.com')
@@ -149,7 +152,7 @@ class ProgramController extends AbstractController
             $program->setSlug($slug);
             $program->setOwner($this->getUser());
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'La série a bien été éditée');
             return $this->redirectToRoute('program_index');
         }
 
@@ -248,5 +251,22 @@ class ProgramController extends AbstractController
             'episode' => $episode,
             "form" => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{program}", requirements={"program"="[\w\-]+"}, name="delete", methods={"DELETE"})
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function delete(Request $request, Program $program): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$program->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($program);
+            $entityManager->flush();
+            $this->addFlash('danger', 'La série ' . $program->getTitle() . ' a bien été supprimée');
+        }
+
+        return $this->redirectToRoute('program_index');
     }
 }
