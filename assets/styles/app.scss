@@ -5,6 +5,11 @@ $secondary: white;
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
 body {
     background-color: white;
     font-family: 'Sriracha', cursive;
@@ -54,4 +59,9 @@ body {
 
 .alert-danger {
     background-color: rgba(182, 7, 13, 0.3);
+}
+
+.watchlist {
+    margin: 5px;
+    color: #B0413E;
 }

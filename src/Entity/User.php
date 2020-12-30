@@ -75,6 +75,19 @@ class User implements UserInterface
         $this->WatchListPrograms = new ArrayCollection();
     }
 
+    /**
+     * @param Program $program
+     * @return bool
+     */
+    public function isInWatchlist(Program $program) : bool
+    {
+        if ($this->watchListPrograms->contains($program)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;
