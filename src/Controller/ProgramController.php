@@ -8,6 +8,7 @@ use App\Entity\Program;
 use App\Entity\Season;
 use App\Entity\Episode;
 use App\Entity\Comment;
+use app\Entity\User;
 use App\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -268,5 +269,18 @@ class ProgramController extends AbstractController
         }
 
         return $this->redirectToRoute('program_index');
+    }
+
+    /**
+     * @Route("/{program}/watchlist", requirements={"program"="[\w\-]+"}, name="watchlist", methods={"GET","POST"})
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
+     */
+     public function addToWatchlist(Program $program): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $entityManager = $this->getDoctrine()->getManager();
+        $this->getUser()->addWatchListProgram($program);
+        $entityManager->flush();
+        return $this->redirectToRoute('program_show', ['program' => $program->getSlug()]);
     }
 }
