@@ -69,6 +69,25 @@ class ProgramController extends AbstractController
     }
 
     /**
+     * @Route("/{program}/watchlist", requirements={"program"="[\w\-]+"}, name="watchlist", methods={"GET"})
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
+     */
+    public function addToWatchlist(Request $request, Program $program, EntityManagerInterface  $entityManager)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        if ($this->getUser()->getWatchListPrograms()->contains($program)) {
+            $this->getUser()->removeWatchListProgram($program);
+        }
+        else {
+            $this->getUser()->addWatchListProgram($program);
+        }
+        $entityManager->flush();
+        return $this->json([
+            'isInWatchlist' => $this->getUser()->isInWatchlist($program)
+        ]);
+    }
+
+    /**
      * The controller for the program add form
      *
      * @Route("/new", name="new")
@@ -269,22 +288,5 @@ class ProgramController extends AbstractController
         }
 
         return $this->redirectToRoute('program_index');
-    }
-
-    /**
-     * @Route("/{program}/watchlist", requirements={"program"="[\w\-]+"}, name="watchlist", methods={"GET","POST"})
-     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
-     */
-     public function addToWatchlist(Program $program, EntityManagerInterface  $entityManager): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        if ($this->getUser()->getWatchListPrograms()->contains($program)) {
-            $this->getUser()->removeWatchListProgram($program);
-        }
-        else {
-            $this->getUser()->addWatchListProgram($program);
-        }
-        $entityManager->flush();
-        return $this->redirectToRoute('program_show', ['program' => $program->getSlug()]);
     }
 }
