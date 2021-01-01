@@ -25,21 +25,23 @@
                 <a class="nav-item nav-link active text-secondary" href="/">Home <span class="sr-only">(current)</span></a>
             </div>
             <div class="navbar-nav">
-                <a class="nav-item nav-link active text-secondary" href="/programs/">Programs <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active text-secondary" href="{{ path('program_index') }}">Programs <span class="sr-only">(current)</span></a>
             </div>
             <div class="navbar-nav">
-                <a class="nav-item nav-link active text-secondary" href="/categories/">Categories <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active text-secondary" href="{{ path('category_index') }}">Categories <span class="sr-only">(current)</span></a>
             </div>
             {% if app.user %}
-                {{ app.user.name }}
+                {% trans with {'%username%': app.user.email} %}
+                    hello_username
+                {% endtrans %} !
             <div class="navbar-nav">
                 <a class="nav-item nav-link active text-secondary" href="{{ path('app_profile') }}"> Mon profil</a>
             </div>
             <div class="navbar-nav">
-                <a class="nav-item nav-link active text-secondary" href="{{ path('app_logout') }}"> Se déconnecter</a>
+                <a class="nav-item nav-link active text-secondary" href="{{ path('app_logout') }}"> {{ 'account.logout'|trans }}</a>
             </div>
             {% else %}
-                <a class="nav-item nav-link active text-secondary" href="{{ path('app_login') }}"> Se connecter</a>
+                <a class="nav-item nav-link active text-secondary" href="{{ path('app_login') }}">{{ 'account.login'|trans }}</a>
             {% endif %}
         </div>
     </nav>

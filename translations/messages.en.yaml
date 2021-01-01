@@ -1,0 +1,4 @@
+hello_username: __hello_username
+account:
+  logout: __account.logout
+  login: __account.login
