@@ -2,20 +2,22 @@
 {% block title %}Wild Series{% endblock %}
 {% block body %}
     <div class="container">
-        <h1 class="title-center welcome">Bienvenue sur {{ website }}!</h1>
-        <h2>Les toutes dernières séries</h2>
+        <h1 class="title-center welcome">{% trans with {'%website%': website} %}
+                Welcome on %website% site
+            {% endtrans %} !</h1>
+        <h2>{{ 'the latest series' |trans }}</h2>
         {% for program in programs %}
             <div class="card">
                 <div class="card-body">
-                    <h2>{{ program.title }} - Catégorie : {{ program.category.name }}</h2>
+                    <h2>{{ program.title }} - {{ 'Categories' |trans }} : {{ program.category.name }}</h2>
                     <p>{{ program.synopsis }}</p>
                     <p>{{ program.year }}</p>
                     <p>{{ program.country }}</p>
-                    <a href="{{ path("program_show", { program: program.slug }) }}">Voir la fiche</a>
+                    <a href="{{ path("program_show", { program: program.slug }) }}">{{ 'See details' |trans }}</a>
                 </div>
             </div>
         {% else %}
-            Aucune série trouvée.
+            {{ 'No program found' |trans }}
         {% endfor %}
     </div>
 {% endblock %}

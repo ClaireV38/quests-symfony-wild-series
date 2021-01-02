@@ -1,4 +1,11 @@
-hello_username: __hello_username
-account:
-  logout: __account.logout
-  login: __account.login
+hello_username: hello_username
+account.logout: logout
+account.login: login
+Programs: Programs
+Categories: Categories
+'My profile': 'My profile'
+'Welcome !': 'Welcome !'
+'Welcome on %website% site': 'Welcome on %website% site'
+'the latest series': 'the latest series'
+'Voir la fiche': 'Voir la fiche'
+'No program found': 'No program found'
