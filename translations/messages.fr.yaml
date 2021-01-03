@@ -21,7 +21,7 @@ program.available_episodes: 'les épisodes disponibles'
 no_episode: 'Aucun épisode trouvé'
 delete: Supprimer
 program: Série
-program.category: catégorie
+program.category: Catégorie
 program.year_of_release: 'année de sortie'
 program.available_seasons: 'saisons disponibles'
 no_season: 'Aucune saison trouvée'
@@ -37,5 +37,5 @@ back.home: 'Retour à l''accueil'
 'All Categories from categry''s table': 'Toutes les catégories de la table catégorie'
 'Show programs': 'Voir les séries'
 no_category: 'Aucune catégorie trouvée'
-search: rechercher
+search: Rechercher
 'search by lastname of on actor that plays in the program': 'rechercher par le nom de famille d''un acteur de la série'

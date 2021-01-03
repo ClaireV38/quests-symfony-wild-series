@@ -1,7 +1,7 @@
 # quests-symfony-wild-series
 
-quete 24 link to quest24 demo:
-https://www.loom.com/share/8c02dc0750cd4c348fe191ec432b60d2
+quete 25 link to quest25 demo:
+https://www.loom.com/share/d05b9cd9167d4c6f924fd9e514ba44b7
 
 a series of quests to start a project with symfony
 
