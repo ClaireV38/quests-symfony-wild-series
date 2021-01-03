@@ -9,7 +9,7 @@
         <h2>{{ 'filter' |trans }}</h2>
         {{ form_row(form.searchTitle,  { 'label': 'search by title or piece of title' }) }}
         {{ form_row(form.searchActor,  { 'label': 'search by lastname of on actor that plays in the program' }) }}
-        <button class="btn btn-primary">{{ button_label|default('search') }}</button>
+        <button class="btn btn-primary">{{ button_label|default('search' |trans ) }}</button>
         {{ form_end(form) }}
         {% for program in programs %}
             <div class="card flex-row align-items-center mb-3 shadow">
