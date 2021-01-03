@@ -1,19 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All Categories{% endblock %}
+{% block title %}{{ "All categories" |trans }}{% endblock %}
 
 {% block body %}
-    <h1>Toutes les categories de la table category : </h1>
-    {% for category in categories %}
-        <div>
-            <h2>{{ loop.index }} / {{ category.name }}</h2>
-            <a href="{{ path("category_show", { categoryName: category.name }) }}">Voir les series</a>
-        </div>
-    {% else %}
-        Aucune catégorie trouvée.
-    {% endfor %}
+    <div class="container">
+        <h1>{{ "All Categories from categry's table" |trans }} : </h1>
+        {% for category in categories %}
+            <div>
+                <h2>{{ loop.index }} / {{ category.name }}</h2>
+                <a href="{{ path("category_show", { categoryName: category.name }) }}">{{ "Show programs" |trans }}</a>
+            </div>
+        {% else %}
+            {{ "no_category" |trans }}
+        {% endfor %}
 
-    <a href="{{ path('app_index') }}">
-        Retour à l'accueil
-    </a>
+        <a href="{{ path('app_index') }}">
+            {{ "back.home" |trans }}
+        </a>
+    </div>
 {% endblock %}

@@ -7,21 +7,21 @@
         <div class="card">
             <div class="card-body">
                 <h2 class="mt-0">{{ program.title }}</h2>
-                <h3>saison : {{ season.number }}</h3>
-                <h3>episode {{ episode.number }} : {{ episode.title }}</h3>
+                <h3>{{ 'program.season' |trans }} : {{ season.number }}</h3>
+                <h3>{{ 'program.episode' |trans }} {{ episode.number }} : {{ episode.title }}</h3>
                 <p>{{ episode.synopsis }}</p>
             </div>
         </div>
         {% for comment in episode.comments|reverse %}
             <div class="card">
                 <div class="card-body">
-                    <h3>commentaire :</h3>
+                    <h3>{{ 'comment' |trans }} :</h3>
                     <p> {{ comment.comment }} </p>
-                    <h3>note : {{ comment.rate }}</h3>
-                    <h3>auteur : {{ comment.author.name }}</h3>
+                    <h3>{{ 'comment.note' |trans }} : {{ comment.rate }}</h3>
+                    <h3>{{ 'comment.author' |trans }} : {{ comment.author.name }}</h3>
                     {% if app.user and (app.user.name == comment.author.name or is_granted("ROLE_ADMIN")) %}
                         <a href="{{ path("comment_edit", { id: comment.id }) }}">
-                            <button class="btn">éditer</button>
+                            <button class="btn">{{ 'edit' |trans }}</button>
                         </a>
                         {{ include('comment/_delete_form.html.twig') }}
                     {% endif %}
@@ -34,7 +34,7 @@
                 <h4>Ajouter un commentaire</h4>
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
-                <button class="btn">{{ button_label|default('Save') }}</button>
+                <button class="btn">{{ button_label|default({{ 'save' |trans }}) }}</button>
                 {{ form_end(form) }}
                 {% endif %}
             </div>

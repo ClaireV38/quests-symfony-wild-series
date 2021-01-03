@@ -14,11 +14,11 @@
                     <p>{{ program.synopsis }}</p>
                     <p>{{ program.year }}</p>
                     <p>{{ program.country }}</p>
-                    <a href="{{ path("program_show", { program: program.slug }) }}">{{ 'See details' |trans }}</a>
+                    <a href="{{ path("program_show", { program: program.slug }) }}">{{ 'See_details' |trans }}</a>
                 </div>
             </div>
         {% else %}
-            {{ 'No program found' |trans }}
+            {{ 'no_program' |trans }}
         {% endfor %}
     </div>
 {% endblock %}

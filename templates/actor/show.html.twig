@@ -1,26 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Acteur{% endblock %}
+{% block title %}{{ 'Actor' |trans }}{% endblock %}
 
 {% block body %}
-    <h1>Acteur</h1>
+    <div class="container">
+        <h1>{{ 'Actor' |trans }}</h1>
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ actor.id }}</td>
-        </tr>
-        <tr>
-            <th>Nom</th>
-            <td>{{ actor.name }}</td>
-        </tr>
-        </tbody>
-    </table>
-    {% for program in actor.programs %}
-        <li><a href="{{ path("program_show", {program: program.slug }) }}"> {{ program.title }}</a> </li>
-    {% else %}
-        <li>Aucune série pour cet acteur</li>
-    {% endfor %}
-
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ actor.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Name' |trans }}</th>
+                <td>{{ actor.name }}</td>
+            </tr>
+            </tbody>
+        </table>
+        {% for program in actor.programs %}
+            <li><a href="{{ path("program_show", {program: program.slug }) }}"> {{ program.title }}</a></li>
+        {% else %}
+            <li>{{ 'no_program' |trans }}</li>
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -7,13 +7,35 @@ Categories: 'les catégories'
 'Welcome !': 'Bienvenue !'
 'Welcome on %website% site': 'Bienvenue sur %website%'
 'the latest series': 'Les dernières séries'
-'No program found': 'Aucune série trouvée'
 Home: Accueil
-'See details': 'Voir la fiche'
 'All programs from program''s table': 'toutes les séries de la table program'
-filter: filtrer
+filter: Filtrer
 Category: Catégorie
-'Actors :': 'Les acteurs :'
+Actors: 'Les acteurs'
 'No actor found for this program': 'Aucun acteur trouvé pour cette série'
-'Back home': 'Retour à l''accueil'
 'search by title or piece of title': 'rechercher par titre ou morceau de titre'
+See_details: 'Voir la fiche'
+no_program: 'Aucune série trouvée'
+program.season: Saison
+program.available_episodes: 'les épisodes disponibles'
+no_episode: 'Aucun épisode trouvé'
+delete: Supprimer
+program: Série
+program.category: catégorie
+program.year_of_release: 'année de sortie'
+program.available_seasons: 'saisons disponibles'
+no_season: 'Aucune saison trouvée'
+no_actor: 'Aucun acteur trouvé'
+edit: Editer
+back.program_list: 'Retour à la liste des séries'
+Actor: Acteur
+Name: Nom
+'All programs for the category': 'Toutes les séries de la catégorie'
+'The 3 latest programs of the Category': 'Les 3 dernières séries de la catégorie'
+back.home: 'Retour à l''accueil'
+'All categories': 'Toutes les catégories'
+'All Categories from categry''s table': 'Toutes les catégories de la table catégorie'
+'Show programs': 'Voir les séries'
+no_category: 'Aucune catégorie trouvée'
+search: rechercher
+'search by lastname of on actor that plays in the program': 'rechercher par le nom de famille d''un acteur de la série'

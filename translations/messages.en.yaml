@@ -8,3 +8,34 @@ Categories: Categories
 'Welcome on %website% site': 'Welcome on %website% site'
 'the latest series': 'the latest series'
 'No program found': 'No program found'
+Home: Home
+See_details: 'See details'
+no_program: 'No program found'
+program.season: season
+program.available_episodes: 'available episodes'
+no_episode: 'No episode found'
+'All programs from program''s table': 'All programs from program''s table'
+filter: filter
+'Back home': 'Back home'
+delete: Delete
+program: Program
+program.category: Category
+program.year_of_release: 'Year of release'
+program.available_seasons: 'Available seasons'
+no_season: 'No season found'
+Actors: Actors
+no_actor: 'No actor found'
+edit: Edit
+back.program_list: 'Back to program list'
+Actor: Actor
+Name: Name
+'All programs for the category': 'All programs for the category'
+'The 3 latest programs of the Category': 'The 3 latest programs of the Category'
+back.home: 'Back home'
+'All categories': 'All categories'
+'All Categories from categry''s table': 'All Categories from categry''s table'
+'Show programs': 'Show programs'
+no_category: 'No category found'
+search: Search
+'search by lastname of on actor that plays in the program': 'search by lastname of on actor that plays in the program'
+

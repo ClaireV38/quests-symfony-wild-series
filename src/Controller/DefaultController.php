@@ -20,7 +20,7 @@ class DefaultController extends \Symfony\Bundle\FrameworkBundle\Controller\Abstr
             ->getRepository(Program::class)
             ->findBy([], ['id' => 'DESC'],3);
         return $this->render('index.html.twig', [
-            'website' => 'Wild Séries',
+            'website' => 'Wild Series',
             'programs' => $programs,
         ]);
     }

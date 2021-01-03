@@ -8,35 +8,34 @@
         {{ form_start(form,  {'attr': {'class': 'search-form'}}) }}
         <h2>{{ 'filter' |trans }}</h2>
         {{ form_row(form.searchTitle,  { 'label': 'search by title or piece of title' }) }}
-        {{ form_row(form.searchActor,  { 'label': 'search by lastname of on account that plays in the program' }) }}
+        {{ form_row(form.searchActor,  { 'label': 'search by lastname of on actor that plays in the program' }) }}
         <button class="btn btn-primary">{{ button_label|default('search') }}</button>
         {{ form_end(form) }}
         {% for program in programs %}
             <div class="card flex-row align-items-center mb-3 shadow">
                 <img class="mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
                 <div class="card-body">
-                    <h2>{{ loop.index }} / {{ program.title }} - {{ 'Category' |trans }} : {{ program.category.name }}</h2>
+                    <h2>{{ loop.index }} / {{ program.title }} - {{ 'program.category' |trans }} : {{ program.category.name }}</h2>
                     <p>{{ program.synopsis }}</p>
-                    <a href="{{ path("program_show", { program: program.slug }) }}">{{ 'See details' |trans }}</a>
+                    <a href="{{ path("program_show", { program: program.slug }) }}">{{ 'See_details' |trans }}</a>
                     <div class="list-actor">
-                        <strong>{{ 'Actors :' |trans }}</strong>
+                        <strong>{{ 'Actors' |trans }} :</strong>
                         <ul>
                             {% for actor in program.actors %}
                                 <li><a href="{{ path("actor_show", { id: actor.id }) }}"> {{ actor.name }}</a></li>
                             {% else %}
-                                <li>{{ 'No actor found for this program' |trans }}</li>
+                                <li>{{ 'no_actor' |trans }}</li>
                             {% endfor %}
                         </ul>
                     </div>
                 </div>
             </div>
         {% else %}
-            {{ 'No program found' |trans }}
+            {{ 'no_program' |trans }}
         {% endfor %}
-        {{ app.session.get('total') }}
 
         <a href="{{ path('app_index') }}">
-            {{ 'Back home' |trans }}
+            {{ 'back.home' |trans }}
         </a>
     </div>
 {% endblock %}

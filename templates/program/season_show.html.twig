@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} season {{ season.number }} {{ program.title }} {% endblock %}
+{% block title %} {{ 'program.season' |trans }} {{ season.number }} {{ program.title }} {% endblock %}
 
 {% block body %}
     <div class="media">
         <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
         <div class="media-body">
-            <h1 class="mt-0">saison {{ season.number }} de {{ program.title }}</h1>
+            <h1 class="mt-0">{{ 'program.season' |trans }} {{ season.number }} de {{ program.title }}</h1>
             <p>{{ season.description }}</p>
-            <p>Episodes disponibles :
+            <p>{{ 'program.available_episodes' |trans }} :
             <ul>
                 {% for episode in episodes %}
                     <li>
                         <a href="{{ path("program_episode_show", { program: program.slug, seasonId: season.id, episode: episode.slug }) }}">episode {{ episode.number }}</a> : {{ episode.title }}
                     </li>
                 {% else %}
-                    Aucun episode trouvé
+                    {{ 'no_episode' |trans }}
                 {% endfor %}
             </ul>
             </p>
