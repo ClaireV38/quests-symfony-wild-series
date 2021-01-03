@@ -3,37 +3,40 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Toutes les séries de la table program : </h1>
-        <h2>filtrer</h2>
+    <div class="container mt-3">
+        <h1>{{ 'All programs from program\'s table' |trans }} : </h1>
         {{ form_start(form,  {'attr': {'class': 'search-form'}}) }}
-        {{ form_row(form.searchTitle,  { 'label': 'rechercher un titre ou un morceau de titre de série en particulier' }) }}
-        {{ form_row(form.searchActor,  { 'label': 'rechercher par nom de famille d\'un acteur de la série' }) }}
-        <button class="btn btn-primary">{{ button_label|default('rechercher') }}</button>
+        <h2>{{ 'filter' |trans }}</h2>
+        {{ form_row(form.searchTitle,  { 'label': 'search by title or piece of title' }) }}
+        {{ form_row(form.searchActor,  { 'label': 'search by lastname of on account that plays in the program' }) }}
+        <button class="btn btn-primary">{{ button_label|default('search') }}</button>
         {{ form_end(form) }}
         {% for program in programs %}
-            <div class="program-box">
-                <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
-                <p>{{ program.synopsis }}</p>
-                <a href="{{ path("program_show", { program: program.slug }) }}">Voir la fiche</a>
-                <div class="list-actor">
-                    <strong>Acteurs :</strong>
-                    <ul>
-                        {% for actor in program.actors %}
-                            <li><a href="{{ path("actor_show", { id: actor.id }) }}"> {{ actor.name }}</a></li>
-                        {% else %}
-                            <li>Aucun acteur pour cette série</li>
-                        {% endfor %}
-                    </ul>
+            <div class="card flex-row align-items-center mb-3 shadow">
+                <img class="mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+                <div class="card-body">
+                    <h2>{{ loop.index }} / {{ program.title }} - {{ 'Category' |trans }} : {{ program.category.name }}</h2>
+                    <p>{{ program.synopsis }}</p>
+                    <a href="{{ path("program_show", { program: program.slug }) }}">{{ 'See details' |trans }}</a>
+                    <div class="list-actor">
+                        <strong>{{ 'Actors :' |trans }}</strong>
+                        <ul>
+                            {% for actor in program.actors %}
+                                <li><a href="{{ path("actor_show", { id: actor.id }) }}"> {{ actor.name }}</a></li>
+                            {% else %}
+                                <li>{{ 'No actor found for this program' |trans }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         {% else %}
-            Aucune série trouvée.
+            {{ 'No program found' |trans }}
         {% endfor %}
         {{ app.session.get('total') }}
 
         <a href="{{ path('app_index') }}">
-            Retour à l'accueil
+            {{ 'Back home' |trans }}
         </a>
     </div>
 {% endblock %}

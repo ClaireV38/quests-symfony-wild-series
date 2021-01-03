@@ -1,4 +1,4 @@
-hello_username: 'Bienvenue sur %username%'
+hello_username: 'Bienvenue %username%'
 account.logout: 'se deconnecter'
 account.login: 'se connecter'
 Programs: 'les séries'
@@ -7,6 +7,13 @@ Categories: 'les catégories'
 'Welcome !': 'Bienvenue !'
 'Welcome on %website% site': 'Bienvenue sur %website%'
 'the latest series': 'Les dernières séries'
-'Voir la fiche': 'Voir la fiche'
 'No program found': 'Aucune série trouvée'
-Home: 'Accueil'
+Home: Accueil
+'See details': 'Voir la fiche'
+'All programs from program''s table': 'toutes les séries de la table program'
+filter: filtrer
+Category: Catégorie
+'Actors :': 'Les acteurs :'
+'No actor found for this program': 'Aucun acteur trouvé pour cette série'
+'Back home': 'Retour à l''accueil'
+'search by title or piece of title': 'rechercher par titre ou morceau de titre'

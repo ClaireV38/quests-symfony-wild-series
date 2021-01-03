@@ -7,7 +7,8 @@
             {% endtrans %} !</h1>
         <h2>{{ 'the latest series' |trans }}</h2>
         {% for program in programs %}
-            <div class="card">
+            <div class="card flex-row align-items-center mb-3 shadow">
+                <img class="mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
                 <div class="card-body">
                     <h2>{{ program.title }} - {{ 'Categories' |trans }} : {{ program.category.name }}</h2>
                     <p>{{ program.synopsis }}</p>
