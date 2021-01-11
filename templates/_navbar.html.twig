@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{{ 'Welcome !'|trans }}{% endblock %}</title>
-    {{ encore_entry_link_tags('app') }}
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
-    {% block stylesheets %}
-    {% endblock %}
-    <link rel="icon" href="{{ asset('build/images/fav.ico') }}"/>
-</head>
-<body>
-<header>
+
     <nav class="navbar navbar-expand-lg navbar-secondary bg-primary">
         <a class="navbar-brand" href="{{ path('app_index') }}">
             <img class="logo" src="{{ asset('build/images/logocroped.jpg') }}" alt="logo"/>
@@ -59,27 +45,10 @@
                     <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({ '_locale': 'fr' })) }}">Français</a>
                 </div>
             </div>
-            {#  <ul>
+            <ul>
                 {{ render(controller(
                     'App\\Controller\\DefaultController::navbarTop'
                 )) }}
-            </ul> #}
+            </ul>
         </div>
     </nav>
-
-</header>
-{% for category, messages in app.flashes %}
-    {% for message in messages %}
-        <div class="alert alert-{{ category }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endfor %}
-{% block body %}{% endblock %}
-
-
-{% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
-</body>
-</html>
