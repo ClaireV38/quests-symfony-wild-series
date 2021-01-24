@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container">
         {% if programs %}
-            <h1>{{ "The 3 latest programs of the Category" |trans }}{{ programs[0].category.name }} : </h1>
+            <h1>{{ "The 3 latest programs of the Category"|trans }} {{ programs[0].category.name }} : </h1>
         {% endif %}
         {% for program in programs %}
             <div>
