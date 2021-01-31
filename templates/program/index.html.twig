@@ -13,7 +13,7 @@
         {{ form_end(form) }}
         {% for program in programs %}
             <div class="card flex-row align-items-center mb-3 shadow">
-                <img class="mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+                <img class="mr-3" src="{{ vich_uploader_asset(program, 'posterFile') }}" alt="{{ program.title }} poster">
                 <div class="card-body">
                     <h2>{{ loop.index }} / {{ program.title }} - {{ 'program.category' |trans }} : {{ program.category.name }}</h2>
                     <p>{{ program.synopsis }}</p>

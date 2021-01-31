@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Service\Slugify;
+use DateTime;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -29,14 +30,14 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         'Walking Dead' => [
             'summary' => 'Le policier Rick Grimes se réveille après un long coma. Il découvre avec effarement que le monde, ravagé par une épidémie, est envahi par les morts-vivants.',
             'category' => 'Horreur',
-            'poster' => 'https://m.media-amazon.com/images/M/MV5BYTUwOTM3ZGUtMDZiNy00M2I3LWI1ZWEtYzhhNGMyZjI3MjBmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_UX182_CR0,0,182,268_AL_.jpg',
+            'poster' => 'walking-dead',
             'year' => '2010',
             'country' => 'United States'
         ],
         'The Haunting Of Hill House' => [
             'summary' => 'Plusieurs frères et sœurs qui, enfants, ont grandi dans la demeure qui allait devenir la maison hantée la plus célèbre des États-Unis, sont contraints de se réunir pour finalement affronter les fantômes de leur passé.',
             'category' => 'Horreur',
-            'poster' => 'https://m.media-amazon.com/images/M/MV5BMTU4NzA4MDEwNF5BMl5BanBnXkFtZTgwMTQxODYzNjM@._V1_UX182_CR0,0,182,268_AL_.jpg',
+            'poster' => 'haunting-of-hill-house',
             'year' => '2018',
             'country' => 'United States'
         ],
@@ -83,6 +84,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setCountry($data['country']);
             $program->setCategory($this->getReference('category_4'));
             $program->setOwner($this->getReference('admin'));
+            $program->setUpdatedAt(new DateTime('now'));
             $manager->persist($program);
             $this->addReference('program_'.$i, $program);
             $i++;

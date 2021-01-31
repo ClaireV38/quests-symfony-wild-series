@@ -73,6 +73,7 @@ class User implements UserInterface
         $this->comments = new ArrayCollection();
         $this->programs = new ArrayCollection();
         $this->WatchListPrograms = new ArrayCollection();
+        $this->watchListPrograms = new ArrayCollection();
     }
 
     /**
@@ -284,5 +285,10 @@ class User implements UserInterface
         $this->watchListPrograms->removeElement($watchListProgram);
 
         return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
     }
 }

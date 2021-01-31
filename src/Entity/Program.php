@@ -6,6 +6,7 @@ use App\Repository\ProgramRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 //Ici on importe le package Vich, que l’on utilisera sous l’alias “Vich”
+use DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -20,6 +21,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Program
 {
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var Datetime
+     */
+    private $updatedAt;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -40,8 +47,8 @@ class Program
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
      */
     private $poster;
 
@@ -122,13 +129,6 @@ class Program
     public function getPoster(): ?string
     {
         return $this->poster;
-    }
-
-    public function setPoster(?string $poster): self
-    {
-        $this->poster = $poster;
-
-        return $this;
     }
 
     public function getCategory(): ?Category
@@ -264,14 +264,36 @@ class Program
         return $this;
     }
 
-    public function setPosterFile(File $image = null):Program
+        public function setPosterFile(File $image = null): Program
     {
         $this->posterFile = $image;
+        if ($image) {
+            $this->setUpdatedAt(new DateTime('now'));
+        }
         return $this;
     }
 
     public function getPosterFile(): ?File
     {
         return $this->posterFile;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt($updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function setPoster(?string $poster): self
+    {
+        $this->poster = $poster;
+
+        return $this;
     }
 }
