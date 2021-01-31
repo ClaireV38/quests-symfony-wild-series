@@ -23,20 +23,20 @@ class ProgramType extends AbstractType
             ->add('title', TextType::class)
             ->add('synopsis', TextareaType::class)
             ->add('posterFile', VichFileType::class, [
-                'required'      => false,
-                'allow_delete'  => true, // not mandatory, default is true
+                'required' => false,
+                'allow_delete' => true, // not mandatory, default is true
                 'download_uri' => true // not mandatory, default is true
             ])
             ->add('country', CountryType::class)
             ->add('year', IntegerType::class)
             ->add('category', null, ['choice_label' => 'name'])
             ->add('actors', EntityType::class, [
-            'class' => Actor::class,
-            'choice_label' => 'name',
-            'multiple' => true,
-            'expanded' => true,
-            'by_reference' => false,
-        ]);
+                'class' => Actor::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

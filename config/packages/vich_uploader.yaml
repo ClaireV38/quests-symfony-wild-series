@@ -6,4 +6,9 @@ vich_uploader:
             # alias qui nous permet d'accéder à nos images depuis le navigateur
             uri_prefix: /uploads/images/posters
             # Chemin vers le dossier de stockage
-            upload_destination: '%upload_directory%'
+            upload_destination: '%upload_directory%/posters/'
+        photo_file:
+            # alias qui nous permet d'accéder à nos images depuis le navigateur
+            uri_prefix: /uploads/images/photos
+            # Chemin vers le dossier de stockage
+            upload_destination: '%upload_directory%/photos/'
